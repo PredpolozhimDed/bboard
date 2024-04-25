@@ -8,6 +8,9 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BbPolicy
 {
+//NOTES вот тут не понял , что и за чем?
+
+
 //    use HandlesAuthorization;
 //
 //    /**

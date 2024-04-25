@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    //NOTES В контролере не должно быть логики, нужно определять через сервисы, валидация вообще через специальные классы rule (php artisan make:rule TestRule - вот с этим можно поиграться и посмотреть как они нативно встраиваются в котнроллеры)
+    //NOTES В целом по всему классу нужно выносить все в сервисы
+
     private const BB_VALIDATOR = [
         'title' => 'required|max:50',
         'content' => 'required',
         'price' => 'required|numeric',
     ];
+
     /**
      * Create a new controller instance.
      *
@@ -31,8 +35,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home',
-            ['bbs' => Auth::user()->bbs()->latest()->get()]);
+        return view('home', ['bbs' => Auth::user()->bbs()->latest()->get()]);
     }
 
     public function create()
@@ -43,9 +46,11 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate(self::BB_VALIDATOR);
-        Auth::user()->bbs()->create(['title' => $validated['title'],
-                                     'content' => $validated['content'],
-                                     'price' => $validated['price'],]);
+        Auth::user()->bbs()->create([
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'price' => $validated['price'],
+        ]);
         return redirect()->route('home');
     }
 
@@ -57,9 +62,11 @@ class HomeController extends Controller
     public function update(Request $request, Bb $bb)
     {
         $validated = $request->validate(self::BB_VALIDATOR);
-        $bb->fill(['title' => $validated['title'],
-                   'content' => $validated['content'],
-                   'price' => $validated['price']]);
+        $bb->fill([
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'price' => $validated['price'],
+        ]);
         $bb->save();
         return redirect()->route('home');
     }

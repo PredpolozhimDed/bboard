@@ -3,6 +3,7 @@
 @section('title', 'Правка объявления :: Мои объявления')
 
 @section('content')
+    {{--NOTES Как правило форма для CREATE и UPDATE операций одна и находиться в одно шаблоне, для уобства правок--}}
     <form action="{{ route('bb.update', ['bb' => $bb->id]) }}" method="POST">
         @csrf
         @method('PATCH')

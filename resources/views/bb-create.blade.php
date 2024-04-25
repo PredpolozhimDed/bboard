@@ -3,13 +3,15 @@
 @section('title', 'Добавление объявления :: Мои объявления')
 
 @section('content')
+    {{--NOTES Как правило форма для CREATE и UPDATE операций одна и находиться в одно шаблоне, для уобства правок--}}
     <form action="{{ route('bb.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="txtTitle" class="form-label">Товар</label>
             <input name="title" id="txtTitle"
                    class="form-control @error('title') is-invalid @enderror">
-{{--                   value="{{ old('title'}}">--}}
+            {{--                   value="{{ old('title'}}">--}}
+            {{--NOTES  @error('title') - интерестная штука, у нас все формы были на AJAX, так что я уже даж ен епомню этих кострукций--}}
             @error('title')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -23,6 +25,7 @@
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        {{--NOTES Описал проблемы в файле с миграцией --}}
         <div class="mb-3">
             <label for="txtPrice" class="form-label">Цена</label>
             <input name="price" id="txtPrice"

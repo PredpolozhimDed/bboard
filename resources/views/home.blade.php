@@ -3,6 +3,7 @@
 @section('content')
     <h2>Добро пожаловать, {{ Auth::user()->name }}</h2>
     <p class="text-end"><a href="{{ route('bb.create') }}">Добавить объявление</a></p>
+    {{--NOTES Бипс-Бипс --}}
     @if (count($bbs) > 0)
         <table class="table table-striped table-borderless">
             <thead>
@@ -13,14 +14,19 @@
             </tr>
             </thead>
             <tbody>
+            {{--NOTES Бипс-Бипс --}}
             @foreach ($bbs as $bb)
                 <tr>
+                    {{--NOTES Бип-Бип --}}
                     <td><h3>{{ $bb->title }}</h3></td>
+                    {{--NOTES Бип-Бип --}}
                     <td>{{ $bb->price }}</td>
                     <td>
+                        {{--NOTES Бип-Бип --}}
                         <a href="{{ route('bb.edit', ['bb' => $bb->id]) }}">Изменить</a>
                     </td>
                     <td>
+                        {{--NOTES Бип-Бип --}}
                         <a href="{{ route('bb.delete', ['bb' => $bb->id]) }}">Удалить</a>
                     </td>
                 </tr>
@@ -28,4 +34,5 @@
             </tbody>
         </table>
     @endif
+{{--NOTES У endsection вроде нет входящих параметров, ну и вообще у всех закрывающих дирректив--}}
 @endsection('content')

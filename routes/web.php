@@ -21,6 +21,9 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+//NOTES для таких целе используются обычно ресурсы, они уже включаю необходимый функционал + при создании командой артизан можно еще и контроллер для этого ресурса сразу создать
+//Route::resource();
+
 Route::get('/home/create', [HomeController::class, 'create'])
     ->name('bb.create');
 
@@ -39,6 +42,8 @@ Route::get('/home/{bb}/delete', [HomeController::class, 'delete'])
 Route::delete('/home/{bb}', [HomeController::class, 'destroy'])
     ->name('bb.destroy')->middleware('can:destroy,bb');
 
+//NOTES поленился в USE вынести?)))
+//NOTES и как прыгнуть с главной тоже не увидел. В чем разница с recource view тоже пока не понятно
 Route::get('/{bb}', [\App\Http\Controllers\BbsController::class, 'detail'])->name('detail');
 
 

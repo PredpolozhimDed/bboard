@@ -1,3 +1,4 @@
+/*NOTES По хорошему нужно перенести в сборщик стиле и вообще не писать стили в public*/
 h1 {
     background: url("/images/logo.jpg") left / auto 100% no-repeat,
     url("/images/logo.jpg") right / auto 100% no-repeat;
